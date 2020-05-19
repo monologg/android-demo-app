@@ -17,6 +17,10 @@ public class NLPListActivity extends AbstractListActivity {
       final Intent intent = new Intent(NLPListActivity.this, TextClassificationActivity.class);
       startActivity(intent);
     });
+    findViewById(R.id.nlp_card_nsmc_click_area).setOnClickListener(v -> {
+      final Intent intent = new Intent(NLPListActivity.this, NSMCActivity.class);
+      startActivity(intent);
+    });
   }
 
   @Override

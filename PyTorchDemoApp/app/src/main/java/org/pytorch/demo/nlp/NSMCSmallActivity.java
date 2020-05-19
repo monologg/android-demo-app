@@ -163,25 +163,17 @@ public class NSMCSmallActivity extends BaseModuleActivity {
         int curSeqLen = feature.inputIds.length;
 
         long[] inputIds = new long[curSeqLen];
-        long[] inputMask = new long[curSeqLen];
-        long[] segmentIds = new long[curSeqLen];
 
         for (int j = 0; j < curSeqLen; j++) {
             inputIds[j] = feature.inputIds[j];
-            inputMask[j] = feature.inputMask[j];
-            segmentIds[j] = feature.segmentIds[j];
         }
 
         final long[] shape = new long[]{1, curSeqLen};
 
         final Tensor inputIdsTensor = Tensor.fromBlob(inputIds, shape);
-        final Tensor inputMaskTensor = Tensor.fromBlob(inputMask, shape);
-        final Tensor segmentIdsTensor = Tensor.fromBlob(segmentIds, shape);
 
         final long moduleForwardStartTime = SystemClock.elapsedRealtime();
-        final IValue output = mModule.forward(IValue.from(inputIdsTensor),
-                IValue.from(inputMaskTensor),
-                IValue.from(segmentIdsTensor));
+        final IValue output = mModule.forward(IValue.from(inputIdsTensor));
         final long moduleForwardDuration = SystemClock.elapsedRealtime() - moduleForwardStartTime;
         IValue[] outputTuple = output.toTuple();
         final Tensor outputTensor = outputTuple[0].toTensor();

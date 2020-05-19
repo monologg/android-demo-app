@@ -23,15 +23,9 @@ import java.util.List;
  */
 public final class Feature {
     public final int[] inputIds;
-    public final int[] inputMask;
-    public final int[] segmentIds;
 
     public Feature(
-            List<Integer> inputIds,
-            List<Integer> inputMask,
-            List<Integer> segmentIds) {
+            List<Integer> inputIds) {
         this.inputIds = Ints.toArray(inputIds);
-        this.inputMask = Ints.toArray(inputMask);
-        this.segmentIds = Ints.toArray(segmentIds);
     }
 }

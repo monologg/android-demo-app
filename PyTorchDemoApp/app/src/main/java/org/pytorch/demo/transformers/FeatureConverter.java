@@ -35,30 +35,15 @@ public final class FeatureConverter {
     }
 
     public Feature convert(String text) {
-        List<String> tokens = new ArrayList<>();
-        List<Integer> segmentIds = new ArrayList<>();
-
-        // Start of generating the features.
-        tokens.add("[CLS]");
-        segmentIds.add(0);
-
-        List<String> origTokens = tokenizer.tokenize(text);
-        for (String token : origTokens) {
-            tokens.add(token);
-            segmentIds.add(0);
-        }
+        List<String> tokens = tokenizer.tokenize(text);
+        tokens.add(0, "[CLS]"); // Start of generating the features.
         if (tokens.size() > maxSeqLen - 1) {
             tokens = tokens.subList(0, maxSeqLen - 1);
-            segmentIds = segmentIds.subList(0, maxSeqLen - 1);
         }
-
-        // For Separation.
-        tokens.add("[SEP]");
-        segmentIds.add(0);
+        tokens.add("[SEP]"); // For Separation.
 
         List<Integer> inputIds = tokenizer.convertTokensToIds(tokens);
-        List<Integer> inputMask = new ArrayList<>(Collections.nCopies(inputIds.size(), 1));
 
-        return new Feature(inputIds, inputMask, segmentIds);
+        return new Feature(inputIds);
     }
 }

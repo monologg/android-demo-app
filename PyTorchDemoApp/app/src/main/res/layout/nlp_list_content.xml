@@ -15,6 +15,16 @@
         android:textAppearance="@style/TextAppearanceMainVisionNlp" />
 
     <org.pytorch.demo.ListCardView
+        android:id="@+id/nlp_card_nsmc_click_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/list_content_margin"
+        android:elevation="1dp"
+        app:descriptionRes="@string/nlp_card_nsmc_description"
+        app:imageRes="@drawable/ic_text_classification_s"
+        app:titleRes="@string/nlp_card_nsmc_title" />
+
+    <org.pytorch.demo.ListCardView
         android:id="@+id/nlp_card_lstm_click_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,13 +34,5 @@
         app:imageRes="@drawable/ic_text_classification_s"
         app:titleRes="@string/nlp_card_lstm_title" />
 
-    <org.pytorch.demo.ListCardView
-        android:id="@+id/nlp_card_nsmc_click_area"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/list_content_margin"
-        android:elevation="1dp"
-        app:descriptionRes="@string/nlp_card_nsmc_description"
-        app:imageRes="@drawable/ic_text_classification_s"
-        app:titleRes="@string/nlp_card_nsmc_title" />
+
 </LinearLayout>

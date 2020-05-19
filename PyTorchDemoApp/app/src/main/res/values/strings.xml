@@ -11,6 +11,7 @@
     <string name="image_classification_results_header_row_score">Score</string>
 
     <string name="text_classification">Text Classification</string>
+    <string name="nsmc">Naver Movie Review</string>
 
     <string name="welcome_page_title">Welcome</string>
     <string name="welcome_page_description">PyTorch mobile demo application</string>
@@ -40,5 +41,7 @@
     <string name="nsmc_sentiment">Sentiment</string>
     <string name="nsmc_score">Score</string>
     <string name="nsmc_edittext_hint">영화 관련 한국어 리뷰 입력...</string>
+    <string name="nsmc_negative">Negative</string>
+    <string name="nsmc_positive">Positive</string>
 
 </resources>

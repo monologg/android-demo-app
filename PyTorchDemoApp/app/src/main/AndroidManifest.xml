@@ -25,7 +25,7 @@
             android:name=".vision.ImageClassificationActivity"
             android:label="@string/image_classification_title"></activity>
         <activity android:name=".nlp.TextClassificationActivity" />
-        <activity android:name=".nlp.NSMCActivity" />
+        <activity android:name=".nlp.NSMCSmallActivity" />
 
     </application>
 

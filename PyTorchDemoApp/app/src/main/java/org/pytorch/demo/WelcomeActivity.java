@@ -40,10 +40,6 @@ public class WelcomeActivity extends AppCompatActivity {
           R.string.welcome_page_title,
           R.drawable.ic_tf_pt,
           R.string.welcome_page_description),
-//      new PageData(
-//          R.string.welcome_page_nlp_title,
-//          R.drawable.ic_text_classification_l,
-//          R.string.welcome_page_nlp_description)
   };
 
   @Override

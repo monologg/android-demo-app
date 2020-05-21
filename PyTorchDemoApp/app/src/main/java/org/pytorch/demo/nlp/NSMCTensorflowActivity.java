@@ -180,10 +180,6 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
             inputIds[0][j] = feature.inputIds[j];
         }
 
-//        final long[] shape = new long[]{1, curSeqLen};
-
-//        final Tensor inputIdsTensor = Tensor.fromBlob(inputIds, shape);
-
         Map<Integer, Object> output = new HashMap<>();
         float[][] softmaxLogits = new float[1][2];
         float[][] logits = new float[1][2];

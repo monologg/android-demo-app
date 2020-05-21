@@ -8,12 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.tabs.TabLayout;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
+
+import org.pytorch.demo.nlp.NLPListActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -36,12 +38,12 @@ public class WelcomeActivity extends AppCompatActivity {
   private static final PageData[] PAGES = new PageData[] {
       new PageData(
           R.string.welcome_page_title,
-          R.drawable.ic_logo_pytorch,
+          R.drawable.ic_tf_pt,
           R.string.welcome_page_description),
-      new PageData(
-          R.string.welcome_page_image_classification_title,
-          R.drawable.ic_image_classification_l,
-          R.string.welcome_page_image_classification_description),
+//      new PageData(
+//          R.string.welcome_page_image_classification_title,
+//          R.drawable.ic_image_classification_l,
+//          R.string.welcome_page_image_classification_description),
       new PageData(
           R.string.welcome_page_nlp_title,
           R.drawable.ic_text_classification_l,
@@ -53,7 +55,8 @@ public class WelcomeActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_welcome);
 
-    findViewById(R.id.skip_button).setOnClickListener(v -> startActivity(new Intent(WelcomeActivity.this, MainActivity.class)));
+//    findViewById(R.id.skip_button).setOnClickListener(v -> startActivity(new Intent(WelcomeActivity.this, MainActivity.class)));
+    findViewById(R.id.skip_button).setOnClickListener(v -> startActivity(new Intent(WelcomeActivity.this, NLPListActivity.class)));
 
     mViewPager = findViewById(R.id.welcome_view_pager);
     mViewPagerAdapter = new WelcomeViewPagerAdapter();

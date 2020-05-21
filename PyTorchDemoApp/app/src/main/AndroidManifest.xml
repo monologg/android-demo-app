@@ -24,7 +24,6 @@
         <activity
             android:name=".vision.ImageClassificationActivity"
             android:label="@string/image_classification_title"></activity>
-        <activity android:name=".nlp.TextClassificationActivity" />
         <activity android:name=".nlp.NSMCPytorchActivity" />
         <activity android:name=".nlp.NSMCTensorflowActivity" />
 

@@ -14,7 +14,7 @@
     <string name="nsmc">Naver Movie Review</string>
 
     <string name="welcome_page_title">Welcome</string>
-    <string name="welcome_page_description">PyTorch mobile demo application</string>
+    <string name="welcome_page_description">PyTorch &amp; Tensorflow mobile demo application</string>
 
     <string name="welcome_page_image_classification_title">Image Classification</string>
     <string name="welcome_page_image_classification_description">Image classification examples run packaged inside app models using output of camera</string>
@@ -36,12 +36,14 @@
     <string name="error_dialog_text">Sorry there was an error.</string>
     <string name="text_classification_edittext_hint">Something like a reddit comment...</string>
 
-    <string name="nlp_card_nsmc_title">Korean Movie Review Sentiment Classification.\nKoELECTRA-Small model trained on NSMC dataset</string>
+    <string name="nlp_card_nsmc_pt_title">NSMC Classification\nwith KoELECTRA-Small\n(Pytorch-Mobile)</string>
     <string name="nlp_card_nsmc_description">Predicts sentiment by given comment with Wordpiece Tokenizer</string>
     <string name="nsmc_sentiment">Sentiment</string>
     <string name="nsmc_score">Score</string>
     <string name="nsmc_edittext_hint">영화 관련 한국어 리뷰 입력...</string>
     <string name="nsmc_negative">Negative</string>
     <string name="nsmc_positive">Positive</string>
+
+    <string name="nlp_card_nsmc_tf_title">NSMC Classification\nwith KoELECTRA-Small\n(Tensorflow-Lite)</string>
 
 </resources>

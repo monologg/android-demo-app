@@ -20,7 +20,7 @@ import org.pytorch.demo.R;
 import org.pytorch.demo.Utils;
 import org.pytorch.demo.transformers.Feature;
 import org.pytorch.demo.transformers.FeatureConverter;
-import org.pytorch.demo.vision.view.ResultRowView;
+import org.pytorch.demo.view.ResultRowView;
 import org.tensorflow.lite.Interpreter;
 
 import java.io.BufferedReader;

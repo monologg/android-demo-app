@@ -14,31 +14,7 @@ public class InfoViewFactory {
 
   public static View newInfoView(Context context, int infoViewType, @Nullable String additionalText) {
     LayoutInflater inflater = LayoutInflater.from(context);
-    if (INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_RESNET == infoViewType) {
-      View view = inflater.inflate(R.layout.info, null, false);
-      TextView infoTextView = view.findViewById(R.id.info_title);
-      TextView descriptionTextView = view.findViewById(R.id.info_description);
-
-      infoTextView.setText(R.string.vision_card_resnet_title);
-      StringBuilder sb = new StringBuilder(context.getString(R.string.vision_card_resnet_description));
-      if (additionalText != null) {
-        sb.append('\n').append(additionalText);
-      }
-      descriptionTextView.setText(sb.toString());
-      return view;
-    } else if (INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_QMOBILENET == infoViewType) {
-      View view = inflater.inflate(R.layout.info, null, false);
-      TextView infoTextView = view.findViewById(R.id.info_title);
-      TextView descriptionTextView = view.findViewById(R.id.info_description);
-
-      infoTextView.setText(R.string.vision_card_qmobilenet_title);
-      StringBuilder sb = new StringBuilder(context.getString(R.string.vision_card_qmobilenet_description));
-      if (additionalText != null) {
-        sb.append('\n').append(additionalText);
-      }
-      descriptionTextView.setText(sb.toString());
-      return view;
-    } else if (INFO_VIEW_TYPE_TEXT_CLASSIFICATION == infoViewType) {
+    if (INFO_VIEW_TYPE_TEXT_CLASSIFICATION == infoViewType) {
       View view = inflater.inflate(R.layout.info, null, false);
       TextView infoTextView = view.findViewById(R.id.info_title);
       TextView descriptionTextView = view.findViewById(R.id.info_description);

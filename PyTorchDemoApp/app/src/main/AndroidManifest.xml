@@ -19,16 +19,10 @@
         </activity>
 
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".vision.VisionListActivity" />
         <activity android:name=".nlp.NLPListActivity" />
-        <activity
-            android:name=".vision.ImageClassificationActivity"
-            android:label="@string/image_classification_title"></activity>
         <activity android:name=".nlp.NSMCPytorchActivity" />
         <activity android:name=".nlp.NSMCTensorflowActivity" />
 
     </application>
-
-    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

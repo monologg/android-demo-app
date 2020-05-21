@@ -29,11 +29,8 @@
         android:id="@+id/welcome_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:tabIndicatorColor="@android:color/white"
-        app:tabIndicatorHeight="6dp"
         app:tabPaddingTop="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/bg_tab_indicator"
         app:layout_constraintBottom_toTopOf="@id/skip_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

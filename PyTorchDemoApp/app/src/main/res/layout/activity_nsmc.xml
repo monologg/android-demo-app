@@ -51,14 +51,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_classification_edit_text">
 
-        <org.pytorch.demo.vision.view.ResultRowView
+        <org.pytorch.demo.view.ResultRowView
             android:id="@+id/text_classification_result_header_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/image_classification_result_row_padding"
             app:textAppearance="@style/TextAppearanceTextClassificationResultHeader" />
 
-        <org.pytorch.demo.vision.view.ResultRowView
+        <org.pytorch.demo.view.ResultRowView
             android:id="@+id/nsmc_top1_result_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             app:progressBarPaddingRes="@dimen/result_row_progress_bar_padding"
             app:textAppearance="@style/TextAppearanceTextClassificationResultTop1" />
 
-        <org.pytorch.demo.vision.view.ResultRowView
+        <org.pytorch.demo.view.ResultRowView
             android:id="@+id/nsmc_top2_result_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             app:progressBarPaddingRes="@dimen/result_row_progress_bar_padding"
             app:textAppearance="@style/TextAppearanceTextClassificationResultTop2Plus" />
 
-        <org.pytorch.demo.vision.view.ResultRowView
+        <org.pytorch.demo.view.ResultRowView
             android:id="@+id/nsmc_time_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

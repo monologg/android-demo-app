@@ -12,25 +12,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:paddingTop="72dp"
-            android:paddingBottom="72dp"
+            android:orientation="vertical"
             android:paddingLeft="24dp"
+            android:paddingTop="72dp"
             android:paddingRight="24dp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/list_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Clickable"
-                android:layout_alignParentTop="true"
-                android:padding="16dp"
-                android:src="@drawable/ic_back"/>
+            android:paddingBottom="72dp">
 
             <ViewStub
                 android:id="@+id/list_content_stub"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 

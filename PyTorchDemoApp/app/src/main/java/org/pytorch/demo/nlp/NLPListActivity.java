@@ -8,21 +8,25 @@ import org.pytorch.demo.R;
 
 public class NLPListActivity extends AbstractListActivity {
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    findViewById(R.id.nlp_card_nsmc_click_area).setOnClickListener(v -> {
-      final Intent intent = new Intent(NLPListActivity.this, NSMCPytorchActivity.class);
-      startActivity(intent);
-    });
-    findViewById(R.id.nlp_card_lstm_click_area).setOnClickListener(v -> {
-      final Intent intent = new Intent(NLPListActivity.this, TextClassificationActivity.class);
-      startActivity(intent);
-    });
-  }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        findViewById(R.id.nlp_card_nsmc_pytorch_click_area).setOnClickListener(v -> {
+            final Intent intent = new Intent(NLPListActivity.this, NSMCPytorchActivity.class);
+            startActivity(intent);
+        });
+        findViewById(R.id.nlp_card_nsmc_tensorflow_click_area).setOnClickListener(v -> {
+            final Intent intent = new Intent(NLPListActivity.this, NSMCTensorflowActivity.class);
+            startActivity(intent);
+        });
+        findViewById(R.id.nlp_card_lstm_click_area).setOnClickListener(v -> {
+            final Intent intent = new Intent(NLPListActivity.this, TextClassificationActivity.class);
+            startActivity(intent);
+        });
+    }
 
-  @Override
-  protected int getListContentLayoutRes() {
-    return R.layout.nlp_list_content;
-  }
+    @Override
+    protected int getListContentLayoutRes() {
+        return R.layout.nlp_list_content;
+    }
 }

@@ -44,6 +44,9 @@ public final class FeatureConverter {
 
         List<Integer> inputIds = tokenizer.convertTokensToIds(tokens);
 
+        while(inputIds.size() < maxSeqLen) {
+            inputIds.add(0);
+        }
         return new Feature(inputIds);
     }
 }

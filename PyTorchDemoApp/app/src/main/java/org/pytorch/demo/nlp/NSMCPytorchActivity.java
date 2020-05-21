@@ -32,7 +32,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class NSMCPytorchActivity extends BaseModuleActivity {
-    private static final String TAG = "NSMCDemo";
+    private static final String TAG = "NSMCPytorchDemo";
     public static final String INTENT_MODULE_ASSET_NAME = "INTENT_MODULE_ASSET_NAME";
 
     private static final long EDIT_TEXT_STOP_DELAY = 600l;
@@ -41,7 +41,7 @@ public class NSMCPytorchActivity extends BaseModuleActivity {
 
     private EditText mEditText;
     private View mResultContent;
-    private ResultRowView[] mResultRowViews = new ResultRowView[3]; //Positive & Negative
+    private ResultRowView[] mResultRowViews = new ResultRowView[3]; // Positive & Negative & Time elapsed
 
     private Module mModule;
     private String mModuleAssetName;
@@ -50,7 +50,7 @@ public class NSMCPytorchActivity extends BaseModuleActivity {
 
     private Map<String, Integer> dic;
     private static final String DIC_PATH = "vocab.txt";
-    private static final int MAX_SEQ_LEN = 50;
+    private static final int MAX_SEQ_LEN = 20;
     private static final boolean DO_LOWER_CASE = false;
     private FeatureConverter featureConverter;
 

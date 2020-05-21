@@ -21,10 +21,10 @@ traced_model = torch.jit.trace(
     model,
     output["input_ids"]
 )
-torch.jit.save(traced_model, "traced_model.pt")
+torch.jit.save(traced_model, "app/src/main/assets/nsmc_small.pt")
 
 # Load model
-loaded_model = torch.jit.load("traced_model.pt")
+loaded_model = torch.jit.load("app/src/main/assets/nsmc_small.pt")
 loaded_model.eval()
 with torch.no_grad():
     outputs = loaded_model(output["input_ids"])

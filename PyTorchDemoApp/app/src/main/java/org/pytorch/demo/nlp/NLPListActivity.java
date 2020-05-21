@@ -12,7 +12,7 @@ public class NLPListActivity extends AbstractListActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     findViewById(R.id.nlp_card_nsmc_click_area).setOnClickListener(v -> {
-      final Intent intent = new Intent(NLPListActivity.this, NSMCSmallActivity.class);
+      final Intent intent = new Intent(NLPListActivity.this, NSMCPytorchActivity.class);
       startActivity(intent);
     });
     findViewById(R.id.nlp_card_lstm_click_area).setOnClickListener(v -> {

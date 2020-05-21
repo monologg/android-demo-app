@@ -8,8 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 public class InfoViewFactory {
-  public static final int INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_RESNET = 1;
-  public static final int INFO_VIEW_TYPE_IMAGE_CLASSIFICATION_QMOBILENET = 2;
   public static final int INFO_VIEW_TYPE_TEXT_CLASSIFICATION = 3;
 
   public static View newInfoView(Context context, int infoViewType, @Nullable String additionalText) {
@@ -19,8 +17,8 @@ public class InfoViewFactory {
       TextView infoTextView = view.findViewById(R.id.info_title);
       TextView descriptionTextView = view.findViewById(R.id.info_description);
 
-      infoTextView.setText(R.string.nlp_card_lstm_title);
-      descriptionTextView.setText(R.string.nlp_card_lstm_description);
+      infoTextView.setText(R.string.nlp_card_title);
+      descriptionTextView.setText(R.string.nlp_card_nsmc_description);
       return view;
     }
     throw new IllegalArgumentException("Unknown info view type");

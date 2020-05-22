@@ -7,3 +7,5 @@ local.properties
 build
 
 __pycache__
+*.tflite
+*.pt

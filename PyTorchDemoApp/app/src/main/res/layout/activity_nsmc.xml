@@ -6,7 +6,7 @@
     android:background="@color/nlpPrimaryColor">
 
     <Button
-        android:id="@+id/text_classification_clear_button"
+        android:id="@+id/nsmc_clear_button"
         style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
@@ -21,7 +21,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
-        android:id="@+id/text_classification_edit_text"
+        android:id="@+id/nsmc_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <LinearLayout
-        android:id="@+id/text_classification_result_content"
+        android:id="@+id/nsmc_result_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -49,10 +49,10 @@
         android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_classification_edit_text">
+        app:layout_constraintTop_toBottomOf="@id/nsmc_edit_text">
 
         <org.pytorch.demo.view.ResultRowView
-            android:id="@+id/text_classification_result_header_row"
+            android:id="@+id/nsmc_result_header_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/image_classification_result_row_padding"

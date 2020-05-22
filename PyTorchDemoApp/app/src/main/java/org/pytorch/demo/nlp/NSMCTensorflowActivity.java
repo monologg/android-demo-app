@@ -38,8 +38,9 @@ import java.util.Map;
 
 public class NSMCTensorflowActivity extends BaseModuleActivity {
     private static final String TAG = "NSMCTensorflowDemo";
-    private static final String MODEL_PATH = "nsmc_small.tflite";
     private static final int NUM_LITE_THREADS = 4;
+    private static final String MODEL_PATH = "nsmc_small.tflite";
+    private static final String DIC_PATH = "nsmc_vocab.txt";
 
     private static final long EDIT_TEXT_STOP_DELAY = 600l;
     private static final String FORMAT_MS = "%dms";
@@ -54,7 +55,6 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
 
     private Interpreter tflite;
     private Map<String, Integer> dic;
-    private static final String DIC_PATH = "vocab.txt";
     private static final int MAX_SEQ_LEN = 20;
     private static final boolean DO_LOWER_CASE = false;
     private FeatureConverter featureConverter;
@@ -113,7 +113,6 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
             this.className = new String[2];
             this.className[0] = "Negative";
             this.className[1] = "Positive";
-            ;
         }
     }
 
@@ -143,13 +142,13 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nsmc);
-        mEditText = findViewById(R.id.text_classification_edit_text);
-        findViewById(R.id.text_classification_clear_button).setOnClickListener(v -> mEditText.setText(""));
+        mEditText = findViewById(R.id.nsmc_edit_text);
+        findViewById(R.id.nsmc_clear_button).setOnClickListener(v -> mEditText.setText(""));
 
         toolBar = findViewById(R.id.toolbar);
         toolBar.setTitle(R.string.nsmc_tensorflow);
 
-        final ResultRowView headerRow = findViewById(R.id.text_classification_result_header_row);
+        final ResultRowView headerRow = findViewById(R.id.nsmc_result_header_row);
         headerRow.nameTextView.setText(R.string.nsmc_sentiment);
         headerRow.scoreTextView.setText(R.string.nsmc_score);
         headerRow.setVisibility(View.VISIBLE);
@@ -157,7 +156,7 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
         mResultRowViews[0] = findViewById(R.id.nsmc_top1_result_row);
         mResultRowViews[1] = findViewById(R.id.nsmc_top2_result_row);
         mResultRowViews[2] = findViewById(R.id.nsmc_time_row);
-        mResultContent = findViewById(R.id.text_classification_result_content);
+        mResultContent = findViewById(R.id.nsmc_result_content);
 
         mEditText.addTextChangedListener(new InternalTextWatcher());
     }

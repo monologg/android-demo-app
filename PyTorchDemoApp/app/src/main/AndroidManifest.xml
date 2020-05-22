@@ -18,8 +18,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".nlp.EnglishNLPListActivity" />
+        <activity android:name=".nlp.IMDBPytorchActivity" />
+        <activity android:name=".nlp.IMDBTensorflowActivity" />
         <activity android:name=".nlp.KoreanNLPListActivity" />
         <activity android:name=".nlp.NSMCPytorchActivity" />
         <activity android:name=".nlp.NSMCTensorflowActivity" />

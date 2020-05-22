@@ -57,6 +57,7 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
     private Map<String, Integer> dic;
     private static final int MAX_SEQ_LEN = 40;
     private static final boolean DO_LOWER_CASE = false;
+    private static final boolean PAD_TO_MAX_LENGTH = true;
     private FeatureConverter featureConverter;
 
     public void loadDictionaryFile() throws IOException {
@@ -170,12 +171,12 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
         if (dic == null) {
             dic = new HashMap<>();
             this.loadDictionary();
-            featureConverter = new FeatureConverter(dic, DO_LOWER_CASE, MAX_SEQ_LEN);
+            featureConverter = new FeatureConverter(dic, DO_LOWER_CASE, MAX_SEQ_LEN, PAD_TO_MAX_LENGTH);
         }
 
         Feature feature = featureConverter.convert(text);
         int curSeqLen = feature.inputIds.length;
-        long[][] inputIds = new long[1][curSeqLen];
+        int[][] inputIds = new int[1][curSeqLen];
 
         for (int j = 0; j < curSeqLen; j++) {
             inputIds[0][j] = feature.inputIds[j];

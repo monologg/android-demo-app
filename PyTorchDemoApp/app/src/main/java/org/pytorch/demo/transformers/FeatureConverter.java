@@ -27,11 +27,13 @@ import java.util.Map;
 public final class FeatureConverter {
     private final FullTokenizer tokenizer;
     private final int maxSeqLen;
+    private final boolean padToMaxLength;
 
     public FeatureConverter(
-            Map<String, Integer> inputDic, boolean doLowerCase, int maxSeqLen) {
+            Map<String, Integer> inputDic, boolean doLowerCase, int maxSeqLen, boolean padToMaxLength) {
         this.tokenizer = new FullTokenizer(inputDic, doLowerCase);
         this.maxSeqLen = maxSeqLen;
+        this.padToMaxLength = padToMaxLength;
     }
 
     public Feature convert(String text) {
@@ -44,8 +46,10 @@ public final class FeatureConverter {
 
         List<Integer> inputIds = tokenizer.convertTokensToIds(tokens);
 
-        while(inputIds.size() < maxSeqLen) {
-            inputIds.add(0);
+        if (padToMaxLength) {
+            while (inputIds.size() < maxSeqLen) {
+                inputIds.add(0);
+            }
         }
         return new Feature(inputIds);
     }

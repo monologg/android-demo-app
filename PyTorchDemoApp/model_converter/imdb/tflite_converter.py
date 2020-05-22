@@ -17,7 +17,7 @@ tokenizer = ElectraTokenizer.from_pretrained("monologg/electra-small-finetuned-i
 model = TFElectraForSequenceClassification.from_pretrained("monologg/electra-small-finetuned-imdb",
                                                            from_pt=True)
 
-input_spec = tf.TensorSpec([1, args.max_seq_len], tf.int64)
+input_spec = tf.TensorSpec([1, args.max_seq_len], tf.int32)
 model._set_inputs(input_spec, training=False)
 
 print(model.inputs)

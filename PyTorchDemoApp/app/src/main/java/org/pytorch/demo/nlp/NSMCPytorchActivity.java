@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.appcompat.widget.Toolbar;
 
 import org.pytorch.IValue;
 import org.pytorch.Module;
@@ -46,6 +47,7 @@ public class NSMCPytorchActivity extends BaseModuleActivity {
     private Module mModule;
     private String mModuleAssetName;
 
+    private Toolbar toolBar;
     private String mLastBgHandledText;
 
     private Map<String, Integer> dic;
@@ -118,6 +120,9 @@ public class NSMCPytorchActivity extends BaseModuleActivity {
         setContentView(R.layout.activity_nsmc);
         mEditText = findViewById(R.id.text_classification_edit_text);
         findViewById(R.id.text_classification_clear_button).setOnClickListener(v -> mEditText.setText(""));
+
+        toolBar = findViewById(R.id.toolbar);
+        toolBar.setTitle(R.string.nsmc_pytorch);
 
         final ResultRowView headerRow = findViewById(R.id.text_classification_result_header_row);
         headerRow.nameTextView.setText(R.string.nsmc_sentiment);

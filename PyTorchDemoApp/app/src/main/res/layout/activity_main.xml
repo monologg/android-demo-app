@@ -6,43 +6,43 @@
     android:layout_height="match_parent"
     android:background="@mipmap/bg_main">
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/main_vision_click_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        style="@style/Clickable"-->
-<!--        app:layout_constraintHeight_percent=".5"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <FrameLayout
+        android:id="@+id/main_english_click_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        style="@style/Clickable"
+        app:layout_constraintHeight_percent=".5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:drawableTop="@drawable/ic_vision_s"-->
-<!--            android:text="@string/main_vision_button"-->
-<!--            android:drawablePadding="16dp"-->
-<!--            android:textAppearance="@style/TextAppearanceMainVisionNlp" />-->
-<!--    </FrameLayout>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableTop="@drawable/us_flag"
+            android:text="@string/english"
+            android:drawablePadding="16dp"
+            android:textAppearance="@style/TextAppearanceMainVisionNlp" />
+    </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/main_nlp_click_view"
+        android:id="@+id/main_korean_click_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         style="@style/Clickable"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent=".5"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-<!--        app:layout_constraintTop_toBottomOf="@id/main_vision_click_view">-->
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_english_click_view">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_language_s"
+            android:drawableTop="@drawable/korea_flag"
             android:layout_gravity="center"
-            android:text="@string/main_nlp_button"
+            android:text="@string/korean"
             android:drawablePadding="16dp"
             android:textAppearance="@style/TextAppearanceMainVisionNlp" />
     </FrameLayout>

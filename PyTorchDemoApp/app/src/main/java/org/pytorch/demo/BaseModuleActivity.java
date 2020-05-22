@@ -60,21 +60,6 @@ public class BaseModuleActivity extends AppCompatActivity {
     }
   }
 
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.menu_model, menu);
-    menu.findItem(R.id.action_info).setVisible(getInfoViewCode() != UNSET);
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    if (item.getItemId() == R.id.action_info) {
-      onMenuItemInfoSelected();
-    }
-    return super.onOptionsItemSelected(item);
-  }
-
   protected int getInfoViewCode() {
     return UNSET;
   }

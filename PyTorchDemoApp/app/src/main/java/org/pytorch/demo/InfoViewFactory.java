@@ -18,7 +18,7 @@ public class InfoViewFactory {
       TextView descriptionTextView = view.findViewById(R.id.info_description);
 
       infoTextView.setText(R.string.nlp_card_title);
-      descriptionTextView.setText(R.string.nlp_card_nsmc_description);
+      descriptionTextView.setText(R.string.nlp_card_description);
       return view;
     }
     throw new IllegalArgumentException("Unknown info view type");

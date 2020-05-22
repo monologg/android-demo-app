@@ -15,8 +15,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import org.pytorch.demo.nlp.NLPListActivity;
-
 public class WelcomeActivity extends AppCompatActivity {
 
   private ViewPager mViewPager;
@@ -47,7 +45,7 @@ public class WelcomeActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_welcome);
 
-    findViewById(R.id.skip_button).setOnClickListener(v -> startActivity(new Intent(WelcomeActivity.this, NLPListActivity.class)));
+    findViewById(R.id.skip_button).setOnClickListener(v -> startActivity(new Intent(WelcomeActivity.this, MainActivity.class)));
 
     mViewPager = findViewById(R.id.welcome_view_pager);
     mViewPagerAdapter = new WelcomeViewPagerAdapter();

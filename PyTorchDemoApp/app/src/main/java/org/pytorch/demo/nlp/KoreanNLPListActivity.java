@@ -6,23 +6,23 @@ import android.os.Bundle;
 import org.pytorch.demo.AbstractListActivity;
 import org.pytorch.demo.R;
 
-public class NLPListActivity extends AbstractListActivity {
+public class KoreanNLPListActivity extends AbstractListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         findViewById(R.id.nlp_card_nsmc_tensorflow_click_area).setOnClickListener(v -> {
-            final Intent intent = new Intent(NLPListActivity.this, NSMCTensorflowActivity.class);
+            final Intent intent = new Intent(KoreanNLPListActivity.this, NSMCTensorflowActivity.class);
             startActivity(intent);
         });
         findViewById(R.id.nlp_card_nsmc_pytorch_click_area).setOnClickListener(v -> {
-            final Intent intent = new Intent(NLPListActivity.this, NSMCPytorchActivity.class);
+            final Intent intent = new Intent(KoreanNLPListActivity.this, NSMCPytorchActivity.class);
             startActivity(intent);
         });
     }
 
     @Override
     protected int getListContentLayoutRes() {
-        return R.layout.nlp_list_content;
+        return R.layout.korean_nlp_list_content;
     }
 }

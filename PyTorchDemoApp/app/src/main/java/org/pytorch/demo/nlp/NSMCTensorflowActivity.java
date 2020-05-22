@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.appcompat.widget.Toolbar;
 
 import org.pytorch.demo.BaseModuleActivity;
 import org.pytorch.demo.InfoViewFactory;
@@ -48,10 +49,10 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
     private View mResultContent;
     private ResultRowView[] mResultRowViews = new ResultRowView[3]; // Positive & Negative & Time elapsed
 
-    private Interpreter tflite;
-
+    private Toolbar toolBar;
     private String mLastBgHandledText;
 
+    private Interpreter tflite;
     private Map<String, Integer> dic;
     private static final String DIC_PATH = "vocab.txt";
     private static final int MAX_SEQ_LEN = 20;
@@ -144,6 +145,9 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
         setContentView(R.layout.activity_nsmc);
         mEditText = findViewById(R.id.text_classification_edit_text);
         findViewById(R.id.text_classification_clear_button).setOnClickListener(v -> mEditText.setText(""));
+
+        toolBar = findViewById(R.id.toolbar);
+        toolBar.setTitle(R.string.nsmc_tensorflow);
 
         final ResultRowView headerRow = findViewById(R.id.text_classification_result_header_row);
         headerRow.nameTextView.setText(R.string.nsmc_sentiment);

@@ -5,7 +5,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.pytorch.demo.nlp.NLPListActivity;
+import org.pytorch.demo.nlp.EnglishNLPListActivity;
+import org.pytorch.demo.nlp.KoreanNLPListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    findViewById(R.id.main_nlp_click_view).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, NLPListActivity.class)));
+    findViewById(R.id.main_english_click_view).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, EnglishNLPListActivity.class)));
+    findViewById(R.id.main_korean_click_view).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, KoreanNLPListActivity.class)));
   }
 }

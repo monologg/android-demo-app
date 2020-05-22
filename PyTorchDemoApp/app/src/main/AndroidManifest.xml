@@ -19,7 +19,8 @@
         </activity>
 
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".nlp.NLPListActivity" />
+        <activity android:name=".nlp.EnglishNLPListActivity" />
+        <activity android:name=".nlp.KoreanNLPListActivity" />
         <activity android:name=".nlp.NSMCPytorchActivity" />
         <activity android:name=".nlp.NSMCTensorflowActivity" />
 

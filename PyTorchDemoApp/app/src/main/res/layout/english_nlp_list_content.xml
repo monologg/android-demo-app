@@ -11,28 +11,28 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/list_title_margin_top"
-        android:text="@string/main_nlp_button"
+        android:text="@string/main_english_nlp_title"
         android:textAppearance="@style/TextAppearanceMainVisionNlp" />
 
     <org.pytorch.demo.ListCardView
-        android:id="@+id/nlp_card_nsmc_tensorflow_click_area"
+        android:id="@+id/nlp_card_imdb_tensorflow_click_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/list_content_margin"
         android:elevation="1dp"
-        app:descriptionRes="@string/nlp_card_nsmc_description"
+        app:descriptionRes="@string/nlp_card_description"
         app:imageRes="@drawable/ic_tensorflow"
-        app:titleRes="@string/nlp_card_nsmc_tf_title" />
+        app:titleRes="@string/nlp_card_imdb_tf_title" />
 
     <org.pytorch.demo.ListCardView
-        android:id="@+id/nlp_card_nsmc_pytorch_click_area"
+        android:id="@+id/nlp_card_imdb_pytorch_click_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/list_content_margin"
         android:elevation="1dp"
-        app:descriptionRes="@string/nlp_card_nsmc_description"
+        app:descriptionRes="@string/nlp_card_description"
         app:imageRes="@drawable/ic_pytorch"
-        app:titleRes="@string/nlp_card_nsmc_pt_title" />
+        app:titleRes="@string/nlp_card_imdb_pt_title" />
 
 
 </LinearLayout>

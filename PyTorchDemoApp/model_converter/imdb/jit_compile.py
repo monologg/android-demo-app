@@ -1,14 +1,19 @@
+import os
+import sys
+import argparse
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
+
 import torch
 import numpy as np
 from transformers import ElectraTokenizer, ElectraConfig
 
-import os
-import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from model import ElectraForSequenceClassification
 
 
-MAX_SEQ_LEN = 20  # NOTE This should be same as the setting of the android!!!
+parser = argparse.ArgumentParser()
+# NOTE This should be same as the setting of the android!!!
+parser.add_argument("--max_seq_len", default=40, type=int, help="Maximum sequence length")
+args = parser.parse_args()
 
 # 1. Convert model
 tokenizer = ElectraTokenizer.from_pretrained("monologg/electra-small-finetuned-imdb")
@@ -16,7 +21,7 @@ tokenizer = ElectraTokenizer.from_pretrained("monologg/electra-small-finetuned-i
 model = ElectraForSequenceClassification.from_pretrained("monologg/electra-small-finetuned-imdb", torchscript=True)
 model.eval()
 
-input_ids = torch.tensor([[0] * MAX_SEQ_LEN], dtype=torch.long)
+input_ids = torch.tensor([[0] * args.max_seq_len], dtype=torch.long)
 print(input_ids.size())
 traced_model = torch.jit.trace(
     model,
@@ -30,7 +35,7 @@ text = "This movie is awesome lol!"
 encode_inputs = tokenizer.encode_plus(
     text,
     return_tensors="pt",
-    max_length=MAX_SEQ_LEN,
+    max_length=args.max_seq_len,
     pad_to_max_length=True
 )
 print(encode_inputs)

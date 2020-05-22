@@ -53,7 +53,7 @@ public class IMDBPytorchActivity extends BaseModuleActivity {
     private String mLastBgHandledText;
 
     private Map<String, Integer> dic;
-    private static final int MAX_SEQ_LEN = 20;
+    private static final int MAX_SEQ_LEN = 40;
     private static final boolean DO_LOWER_CASE = true;
     private FeatureConverter featureConverter;
 
@@ -164,9 +164,7 @@ public class IMDBPytorchActivity extends BaseModuleActivity {
         }
 
         Feature feature = featureConverter.convert(text);
-
         int curSeqLen = feature.inputIds.length;
-
         long[] inputIds = new long[curSeqLen];
 
         for (int j = 0; j < curSeqLen; j++) {

@@ -10,11 +10,11 @@ import org.pytorch.demo.nlp.KoreanNLPListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    findViewById(R.id.main_english_click_view).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, EnglishNLPListActivity.class)));
-    findViewById(R.id.main_korean_click_view).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, KoreanNLPListActivity.class)));
-  }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        findViewById(R.id.main_english_click_view).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, EnglishNLPListActivity.class)));
+        findViewById(R.id.main_korean_click_view).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, KoreanNLPListActivity.class)));
+    }
 }

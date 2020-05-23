@@ -15,77 +15,77 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class BaseModuleActivity extends AppCompatActivity {
-  private static final int UNSET = 0;
+    private static final int UNSET = 0;
 
-  protected HandlerThread mBackgroundThread;
-  protected Handler mBackgroundHandler;
-  protected Handler mUIHandler;
+    protected HandlerThread mBackgroundThread;
+    protected Handler mBackgroundHandler;
+    protected Handler mUIHandler;
 
-  @Override
-  protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    mUIHandler = new Handler(getMainLooper());
-  }
-
-  @Override
-  protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-    super.onPostCreate(savedInstanceState);
-    final Toolbar toolbar = findViewById(R.id.toolbar);
-    if (toolbar != null) {
-      setSupportActionBar(toolbar);
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mUIHandler = new Handler(getMainLooper());
     }
-    startBackgroundThread();
-  }
 
-  protected void startBackgroundThread() {
-    mBackgroundThread = new HandlerThread("ModuleActivity");
-    mBackgroundThread.start();
-    mBackgroundHandler = new Handler(mBackgroundThread.getLooper());
-  }
-
-  @Override
-  protected void onDestroy() {
-    stopBackgroundThread();
-    super.onDestroy();
-  }
-
-  protected void stopBackgroundThread() {
-    mBackgroundThread.quitSafely();
-    try {
-      mBackgroundThread.join();
-      mBackgroundThread = null;
-      mBackgroundHandler = null;
-    } catch (InterruptedException e) {
-      Log.e(Constants.TAG, "Error on stopping background thread", e);
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+        startBackgroundThread();
     }
-  }
 
-  protected int getInfoViewCode() {
-    return UNSET;
-  }
+    protected void startBackgroundThread() {
+        mBackgroundThread = new HandlerThread("ModuleActivity");
+        mBackgroundThread.start();
+        mBackgroundHandler = new Handler(mBackgroundThread.getLooper());
+    }
 
-  protected String getInfoViewAdditionalText() {
-    return null;
-  }
+    @Override
+    protected void onDestroy() {
+        stopBackgroundThread();
+        super.onDestroy();
+    }
 
-  private void onMenuItemInfoSelected() {
-    final AlertDialog.Builder builder = new AlertDialog.Builder(this)
-        .setCancelable(true)
-        .setView(InfoViewFactory.newInfoView(this, getInfoViewCode(), getInfoViewAdditionalText()));
+    protected void stopBackgroundThread() {
+        mBackgroundThread.quitSafely();
+        try {
+            mBackgroundThread.join();
+            mBackgroundThread = null;
+            mBackgroundHandler = null;
+        } catch (InterruptedException e) {
+            Log.e(Constants.TAG, "Error on stopping background thread", e);
+        }
+    }
 
-    builder.show();
-  }
+    protected int getInfoViewCode() {
+        return UNSET;
+    }
 
-  @UiThread
-  protected void showErrorDialog(View.OnClickListener clickListener) {
-    final View view = InfoViewFactory.newErrorDialogView(this);
-    final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialog)
-        .setCancelable(false)
-        .setView(view);
-    final AlertDialog alertDialog = builder.show();
-    view.setOnClickListener(v -> {
-      clickListener.onClick(v);
-      alertDialog.dismiss();
-    });
-  }
+    protected String getInfoViewAdditionalText() {
+        return null;
+    }
+
+    private void onMenuItemInfoSelected() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setCancelable(true)
+                .setView(InfoViewFactory.newInfoView(this, getInfoViewCode(), getInfoViewAdditionalText()));
+
+        builder.show();
+    }
+
+    @UiThread
+    protected void showErrorDialog(View.OnClickListener clickListener) {
+        final View view = InfoViewFactory.newErrorDialogView(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialog)
+                .setCancelable(false)
+                .setView(view);
+        final AlertDialog alertDialog = builder.show();
+        view.setOnClickListener(v -> {
+            clickListener.onClick(v);
+            alertDialog.dismiss();
+        });
+    }
 }

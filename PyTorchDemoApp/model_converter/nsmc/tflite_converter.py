@@ -37,20 +37,24 @@ print(outputs[0])
 
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
 
-# For normal conversion:
+# 1. For normal conversion:
 converter.target_spec.supported_ops = [tf.lite.OpsSet.SELECT_TF_OPS]
+tflite_model = converter.convert()
+open("app/src/main/assets/nsmc_small.tflite", "wb").write(tflite_model)
 
-# For conversion with FP16 quantization:
+# 2. For conversion with FP16 quantization:
 # converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
 # converter.target_spec.supported_types = [tf.float16]
 # converter.optimizations = [tf.lite.Optimize.DEFAULT]
 # converter.experimental_new_converter = True
+# tflite_model = converter.convert()
+# open("app/src/main/assets/nsmc_small_fp16.tflite", "wb").write(tflite_model)
 
-# For conversion with hybrid quantization:
+# 3. For conversion with hybrid quantization:
 # converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
 # converter.optimizations = [tf.lite.Optimize.OPTIMIZE_FOR_SIZE]
 # converter.experimental_new_converter = True
+# tflite_model = converter.convert()
+# open("app/src/main/assets/nsmc_small_8bits.tflite", "wb").write(tflite_model)
 
-tflite_model = converter.convert()
 
-open("app/src/main/assets/nsmc_small.tflite", "wb").write(tflite_model)

@@ -265,5 +265,4 @@ public class NSMCPytorchActivity extends BaseModuleActivity {
             mUIHandler.postDelayed(mOnEditTextStopRunnable, EDIT_TEXT_STOP_DELAY);
         }
     }
-
 }

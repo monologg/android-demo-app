@@ -163,7 +163,7 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         Log.v(TAG, "onStart");
         super.onStart();
         Log.v(TAG, "Loading Model...");
@@ -276,5 +276,4 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
             mUIHandler.postDelayed(mOnEditTextStopRunnable, EDIT_TEXT_STOP_DELAY);
         }
     }
-
 }

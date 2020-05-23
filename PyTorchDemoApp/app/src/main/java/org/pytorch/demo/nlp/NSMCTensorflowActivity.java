@@ -276,5 +276,4 @@ public class NSMCTensorflowActivity extends BaseModuleActivity {
             mUIHandler.postDelayed(mOnEditTextStopRunnable, EDIT_TEXT_STOP_DELAY);
         }
     }
-
 }

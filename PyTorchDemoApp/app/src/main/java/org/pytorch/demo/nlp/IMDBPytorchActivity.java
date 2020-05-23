@@ -52,7 +52,7 @@ public class IMDBPytorchActivity extends BaseModuleActivity {
     private Toolbar toolBar;
     private String mLastBgHandledText;
 
-    private Map<String, Integer> dic;
+    private Map<String, Integer> dic = new HashMap<>();
     private static final int MAX_SEQ_LEN = 40;
     private static final boolean DO_LOWER_CASE = true;
     private static final boolean PAD_TO_MAX_LENGTH = false;
@@ -79,6 +79,12 @@ public class IMDBPytorchActivity extends BaseModuleActivity {
         }
     }
 
+    public void loadModel() {
+        final String moduleFileAbsoluteFilePath = new File(Utils.assetFilePath(this, getModuleAssetName())).getAbsolutePath();
+        mModule = Module.load(moduleFileAbsoluteFilePath);
+        Log.v(TAG, "Pytorch model: " + MODEL_PATH + " loaded.");
+    }
+
     private static class AnalysisResult {
         private final float[] scores;
         private final String[] className;
@@ -92,7 +98,6 @@ public class IMDBPytorchActivity extends BaseModuleActivity {
             this.className[1] = "Positive";
         }
     }
-
 
     private Runnable mOnEditTextStopRunnable = () -> {
         final String text = mEditText.getText().toString();
@@ -117,6 +122,7 @@ public class IMDBPytorchActivity extends BaseModuleActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imdb);
         mEditText = findViewById(R.id.imdb_edit_text);
@@ -138,6 +144,18 @@ public class IMDBPytorchActivity extends BaseModuleActivity {
         mEditText.addTextChangedListener(new InternalTextWatcher());
     }
 
+    @Override
+    protected void onStart() {
+        Log.v(TAG, "onStart");
+        super.onStart();
+        Log.v(TAG, "Loading Model...");
+        loadModel();
+        Log.v(TAG, "Loading Dictionary");
+        this.loadDictionary();
+        Log.v(TAG, "Loading Feature Converter");
+        featureConverter = new FeatureConverter(dic, DO_LOWER_CASE, MAX_SEQ_LEN, PAD_TO_MAX_LENGTH);
+    }
+
     protected String getModuleAssetName() {
         if (!TextUtils.isEmpty(mModuleAssetName)) {
             return mModuleAssetName;
@@ -153,36 +171,27 @@ public class IMDBPytorchActivity extends BaseModuleActivity {
     @WorkerThread
     @Nullable
     private AnalysisResult analyzeText(final String text) {
-        if (mModule == null) {
-            final String moduleFileAbsoluteFilePath = new File(
-                    Utils.assetFilePath(this, getModuleAssetName())).getAbsolutePath();
-            mModule = Module.load(moduleFileAbsoluteFilePath);
-        }
-        if (dic == null) {
-            dic = new HashMap<>();
-            this.loadDictionary();
-            featureConverter = new FeatureConverter(dic, DO_LOWER_CASE, MAX_SEQ_LEN, PAD_TO_MAX_LENGTH);
-        }
+        Log.v(TAG, "Pytorch model: " + MODEL_PATH + " running...");
 
+        Log.v(TAG, "Convert feature...");
         Feature feature = featureConverter.convert(text);
+        Log.v(TAG, "Set inputs...");
         int curSeqLen = feature.inputIds.length;
         long[] inputIds = new long[curSeqLen];
-
         for (int j = 0; j < curSeqLen; j++) {
             inputIds[j] = feature.inputIds[j];
         }
-
         final long[] shape = new long[]{1, curSeqLen};
-
         final Tensor inputIdsTensor = Tensor.fromBlob(inputIds, shape);
 
+        Log.v(TAG, "Run inference...");
         final long moduleForwardStartTime = SystemClock.elapsedRealtime();
         final IValue output = mModule.forward(IValue.from(inputIdsTensor));
         final long moduleForwardDuration = SystemClock.elapsedRealtime() - moduleForwardStartTime;
         IValue[] outputTuple = output.toTuple();
         final Tensor outputTensor = outputTuple[0].toTensor();
         final float[] scores = outputTensor.getDataAsFloatArray();
-
+        Log.v(TAG, "Finish!");
         return new AnalysisResult(scores, moduleForwardDuration);
     }
 
@@ -227,12 +236,15 @@ public class IMDBPytorchActivity extends BaseModuleActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        Log.v(TAG, "onStop");
+        super.onStop();
         if (mModule != null) {
+            Log.v(TAG, "Unload model...");
             mModule.destroy();
         }
         if (dic != null) {
+            Log.v(TAG, "Unload Dictionary...");
             dic.clear();
         }
     }

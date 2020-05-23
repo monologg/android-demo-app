@@ -54,7 +54,7 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
     private String mLastBgHandledText;
 
     private Interpreter tflite;
-    private Map<String, Integer> dic;
+    private Map<String, Integer> dic = new HashMap<>();
     private static final int MAX_SEQ_LEN = 40;
     private static final boolean DO_LOWER_CASE = true;
     private static final boolean PAD_TO_MAX_LENGTH = true;
@@ -97,7 +97,7 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
             Interpreter.Options opt = new Interpreter.Options();
             opt.setNumThreads(NUM_LITE_THREADS);
             tflite = new Interpreter(buffer, opt);
-            Log.v(TAG, "TFLite model loaded.");
+            Log.v(TAG, "TFLite model: " + MODEL_PATH + " loaded.");
         } catch (IOException ex) {
             Log.e(TAG, ex.getMessage());
         }
@@ -116,7 +116,6 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
             this.className[1] = "Positive";
         }
     }
-
 
     private Runnable mOnEditTextStopRunnable = () -> {
         final String text = mEditText.getText().toString();
@@ -141,6 +140,7 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.v(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imdb);
         mEditText = findViewById(R.id.imdb_edit_text);
@@ -162,20 +162,27 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
         mEditText.addTextChangedListener(new InternalTextWatcher());
     }
 
+    @Override
+    protected void onStart(){
+        Log.v(TAG, "onStart");
+        super.onStart();
+        Log.v(TAG, "Loading Model...");
+        loadModel();
+        Log.v(TAG, "Loading Dictionary");
+        this.loadDictionary();
+        Log.v(TAG, "Loading Feature Converter");
+        featureConverter = new FeatureConverter(dic, DO_LOWER_CASE, MAX_SEQ_LEN, PAD_TO_MAX_LENGTH);
+    }
+
     @WorkerThread
     @Nullable
     private AnalysisResult analyzeText(final String text) {
-        if (tflite == null) {
-            loadModel();
-        }
-        if (dic == null) {
-            dic = new HashMap<>();
-            this.loadDictionary();
-            featureConverter = new FeatureConverter(dic, DO_LOWER_CASE, MAX_SEQ_LEN, PAD_TO_MAX_LENGTH);
-        }
+        Log.v(TAG, "TFLite model: " + MODEL_PATH + " running...");
 
+        Log.v(TAG, "Convert feature...");
         Feature feature = featureConverter.convert(text);
 
+        Log.v(TAG, "Set inputs...");
         int curSeqLen = feature.inputIds.length;
         int[][] inputIds = new int[1][curSeqLen];
         for (int j = 0; j < curSeqLen; j++) {
@@ -188,6 +195,7 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
         output.put(0, softmaxLogits);
         output.put(1, logits);
 
+        Log.v(TAG, "Run inference...");
         final long moduleForwardStartTime = SystemClock.elapsedRealtime();
         tflite.runForMultipleInputsOutputs(new Object[]{inputIds}, output);
         final long moduleForwardDuration = SystemClock.elapsedRealtime() - moduleForwardStartTime;
@@ -195,7 +203,7 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
         float[] scores = new float[2];
         scores[0] = softmaxLogits[0][0];
         scores[1] = softmaxLogits[0][1];
-
+        Log.v(TAG, "Finish!");
         return new AnalysisResult(scores, moduleForwardDuration);
     }
 
@@ -240,12 +248,15 @@ public class IMDBTensorflowActivity extends BaseModuleActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        Log.v(TAG, "onStop");
+        super.onStop();
         if (tflite != null) {
+            Log.v(TAG, "Unload model...");
             tflite.close();
         }
         if (dic != null) {
+            Log.v(TAG, "Unload Dictionary...");
             dic.clear();
         }
     }
